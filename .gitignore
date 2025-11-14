@@ -1,9 +1,10 @@
 /target
 **/*.rs.bk
 Cargo.lock
-*.bin
 *.img
 *.iso
 *.o
 *.elf
 /build
+# But allow program binaries
+!programs/*.bin

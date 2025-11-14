@@ -1,0 +1,28 @@
+# Test commands for Phase 2
+
+# Show help
+help
+
+# List files
+ls
+
+# Show memory info
+mem
+
+# Run hello program
+run hello.bin
+
+# Run count program
+run count.bin
+
+# Create a file
+write test.txt Hello from Phase 2
+
+# List files again
+ls
+
+# View the file
+cat test.txt
+
+# Show processes
+ps
