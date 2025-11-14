@@ -10,18 +10,25 @@ use core::panic::PanicInfo;
 mod vga_buffer;
 mod keyboard;
 mod interrupts;
+mod serial;
 
 /// Entry point for the kernel
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    serial_println!("Bare Bones OS - Starting...");
     println!("Welcome to Bare Bones OS!");
+    serial_println!("VGA buffer initialized");
     println!("Type 'help' for available commands");
     println!("");
     
     // Initialize interrupts and keyboard
+    serial_println!("Initializing interrupts...");
     interrupts::init();
+    serial_println!("Interrupts initialized");
     
     // Start the command line interface
+    serial_println!("Starting command line shell...");
+    serial_println!("OS is ready for input!");
     shell::run();
     
     loop {
@@ -32,6 +39,7 @@ pub extern "C" fn _start() -> ! {
 /// Panic handler for the kernel
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
+    serial_println!("PANIC: {}", info);
     println!("{}", info);
     loop {
         x86_64::instructions::hlt();
